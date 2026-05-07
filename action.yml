@@ -4,16 +4,12 @@ author: 'repolevedavaj'
 branding:
   icon: 'package'
   color: 'gray-dark'
-inputs:
-  nsis-version:
-    required: true
-    description: 'The version of NSIS to install'
 runs:
   using: "composite"
   steps:
     - name: Install NSIS
       run: |
-        Invoke-WebRequest https://deac-riga.dl.sourceforge.net/project/nsis/NSIS%203/${{ inputs.nsis-version }}/nsis-${{ inputs.nsis-version }}-setup.exe?viasf=1 -OutFile C:\WINDOWS\Temp\nsis-${{ inputs.nsis-version }}-setup.exe
+        Invoke-WebRequest https://onboardcloud.dl.sourceforge.net/project/nsis/NSIS 3/3.11/nsis-3.11-setup.exe?viasf=1&fid=313eddb57b5853c6 -OutFile C:\WINDOWS\Temp\nsis-${{ inputs.nsis-version }}-setup.exe
         $process = Start-Process "C:\WINDOWS\Temp\nsis-${{ inputs.nsis-version }}-setup.exe" -ArgumentList "/S" -Wait -PassThru
         $exitCode = $process.ExitCode
           if ($exitCode -eq 0) {
