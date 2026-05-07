@@ -9,8 +9,8 @@ runs:
   steps:
     - name: Install NSIS
       run: |
-        Invoke-WebRequest "https://onboardcloud.dl.sourceforge.net/project/nsis/NSIS 3/3.11/nsis-3.11-setup.exe?viasf=1&fid=313eddb57b5853c6" -OutFile C:\WINDOWS\Temp\nsis-${{ inputs.nsis-version }}-setup.exe
-        $process = Start-Process "C:\WINDOWS\Temp\nsis-${{ inputs.nsis-version }}-setup.exe" -ArgumentList "/S" -Wait -PassThru
+        Invoke-WebRequest "https://onboardcloud.dl.sourceforge.net/project/nsis/NSIS 3/3.11/nsis-3.11-setup.exe?viasf=1&fid=313eddb57b5853c6" -OutFile C:\WINDOWS\Temp\nsis-3.11-setup.exe
+        $process = Start-Process "C:\WINDOWS\Temp\nsis-3.11-setup.exe" -ArgumentList "/S" -Wait -PassThru
         $exitCode = $process.ExitCode
           if ($exitCode -eq 0) {
               Write-Host "Installer ran successfully."
@@ -23,8 +23,8 @@ runs:
       shell: pwsh
     - name: Apply NSIS long string patch
       run: |
-        Invoke-WebRequest https://deac-riga.dl.sourceforge.net/project/nsis/NSIS%203/${{ inputs.nsis-version }}/nsis-${{ inputs.nsis-version }}-strlen_8192.zip?viasf=1 -OutFile C:\WINDOWS\Temp\nsis-${{ inputs.nsis-version }}-strlen_8192.zip
-        Expand-Archive "C:\WINDOWS\Temp\nsis-${{ inputs.nsis-version }}-strlen_8192.zip" -DestinationPath "C:\Program Files (x86)\NSIS" -Force
+        Invoke-WebRequest https://deac-riga.dl.sourceforge.net/project/nsis/NSIS%203/3.11/nsis-3.11-strlen_8192.zip?viasf=1 -OutFile C:\WINDOWS\Temp\nsis-3.11-strlen_8192.zip
+        Expand-Archive "C:\WINDOWS\Temp\nsis-3.11-strlen_8192.zip" -DestinationPath "C:\Program Files (x86)\NSIS" -Force
       shell: pwsh
     - name: Install NSIS EnvVar plugin
       run: |
