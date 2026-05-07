@@ -21,13 +21,3 @@ runs:
         echo "C:\Program Files (x86)\NSIS\Bin" | Out-File -FilePath "$env:GITHUB_PATH" -Append
         echo "C:\Program Files (x86)\NSIS" | Out-File -FilePath "$env:GITHUB_PATH" -Append
       shell: pwsh
-    - name: Apply NSIS long string patch
-      run: |
-        Invoke-WebRequest https://deac-riga.dl.sourceforge.net/project/nsis/NSIS%203/3.11/nsis-3.11-strlen_8192.zip?viasf=1 -OutFile C:\WINDOWS\Temp\nsis-3.11-strlen_8192.zip
-        Expand-Archive "C:\WINDOWS\Temp\nsis-3.11-strlen_8192.zip" -DestinationPath "C:\Program Files (x86)\NSIS" -Force
-      shell: pwsh
-    - name: Install NSIS EnvVar plugin
-      run: |
-        Invoke-WebRequest https://nsis.sourceforge.io/mediawiki/images/7/7f/EnVar_plugin.zip -OutFile C:\WINDOWS\Temp\EnVar_plugin.zip
-        Expand-Archive "C:\WINDOWS\Temp\EnVar_plugin.zip" -DestinationPath "C:\Program Files (x86)\NSIS" -Force
-      shell: pwsh
